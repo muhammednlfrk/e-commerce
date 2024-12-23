@@ -30,7 +30,7 @@ public class UserAuthenticator(
     public async Task<User?> LogInAsync(string userName, string password)
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(userName, nameof(userName));
-        ArgumentNullException.ThrowIfNullOrWhiteSpace(password, nameof(password));
+        ArgumentNullException.ThrowIfNullOrEmpty(password, nameof(password));
 
         using SecureString securePassword = password.ToReadOnlySecureString();
         SecureString securePasswordHashed = await _passwordHasher.HashPasswordAsync(securePassword);
@@ -38,8 +38,7 @@ public class UserAuthenticator(
              userName: userName,
              password: securePasswordHashed.ConvertToUnsecureString());
 
-        if (userEntity == null)
-            return null;
+        if (userEntity == null) return null;
         else if (userEntity.Roles == null || userEntity.Roles.Count == 0)
             UserAuthenticationException.Throw("The user's roles not found!");
 

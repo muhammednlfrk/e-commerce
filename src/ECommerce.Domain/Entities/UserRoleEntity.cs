@@ -26,6 +26,11 @@ public class UserRoleEntity : EntityBase, IEntity
     public ulong RoleGroupValue { get; set; }
 
     /// <summary>
+    /// The id of the <see cref="RoleGroup"/>.
+    /// </summary>
+    public Guid RoleGroupId { get; set; }
+
+    /// <summary>
     /// The role group.
     /// </summary>
     public RoleGroupEntity? RoleGroup { get; set; }

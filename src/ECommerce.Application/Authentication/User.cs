@@ -63,6 +63,8 @@ public sealed class User : IDisposable
         Roles = roles;
     }
 
+    #region Properties
+
     /// <summary>
     /// The unique identifier of the <see cref="User"/>.
     /// </summary>
@@ -126,6 +128,26 @@ public sealed class User : IDisposable
     /// </summary>
     public IReadOnlyDictionary<ulong, ulong> Roles { get; }
 
+    #endregion
+
+    #region Method Overloadings
+
+    /// <inheritdoc/>
+    public override bool Equals(object? obj)
+    {
+        return obj is User user && Id.Equals(user.Id);
+    }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id);
+    }
+
+    #endregion
+
+    #region IDisposable Implementation
+
     /// <inheritdoc/>
     public void Dispose()
     {
@@ -134,4 +156,6 @@ public sealed class User : IDisposable
         Gsm.Dispose();
         GC.SuppressFinalize(this);
     }
+
+    #endregion
 }
