@@ -42,7 +42,11 @@ public sealed class User : IDisposable
         string userName,
         SecureString password,
         ref string email,
+        bool isEmailConfirmed,
+        bool isEmail2FAEnabled,
         ref string gsm,
+        bool isGsmConfirmed,
+        bool isGsm2FAEnabled,
         IReadOnlyDictionary<ulong, ulong> roles)
     {
         Id = id;
@@ -51,7 +55,11 @@ public sealed class User : IDisposable
         UserName = userName;
         Password = password;
         Email = email.ToReadOnlySecureString();
+        IsEmailConfirmed = isEmailConfirmed;
+        IsEmail2FAEnabled = isEmail2FAEnabled;
         Gsm = gsm.ToReadOnlySecureString();
+        IsGsmConfirmed = isGsmConfirmed;
+        IsGsm2FAEnabled = isGsm2FAEnabled;
         Roles = roles;
     }
 
@@ -86,9 +94,29 @@ public sealed class User : IDisposable
     public SecureString Email { get; }
 
     /// <summary>
+    /// User's email is confirmed or not.
+    /// </summary>
+    public bool IsEmailConfirmed { get; }
+
+    /// <summary>
+    /// User's 2FA by email enabled or not.
+    /// </summary>
+    public bool IsEmail2FAEnabled { get; }
+
+    /// <summary>
     /// User's GSM number.
     /// </summary>
     public SecureString Gsm { get; }
+
+    /// <summary>
+    /// User's GSM is confirmed or not.
+    /// </summary>
+    public bool IsGsmConfirmed { get; }
+
+    /// <summary>
+    /// User's 2FA by GSM enabled or not.
+    /// </summary>
+    public bool IsGsm2FAEnabled { get; }
 
     /// <summary>
     /// Spesifies user role groups and user roles.

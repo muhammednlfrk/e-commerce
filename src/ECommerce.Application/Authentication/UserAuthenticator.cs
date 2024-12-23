@@ -1,4 +1,5 @@
-﻿using ECommerce.Domain.Entities;
+﻿using ECommerce.Application.Security;
+using ECommerce.Domain.Entities;
 using ECommerce.Domain.Exceptions;
 using ECommerce.Domain.Helpers;
 using ECommerce.Domain.Repositories;
@@ -13,8 +14,20 @@ public class UserAuthenticator(
     private readonly IUserRepository _userRepository = userRepository;
     private readonly IPasswordHasher _passwordHasher = passwordHasher;
 
+    private readonly List<User> _authenticatedUsers = [];
+    private readonly object _authenticatedUserListLock = new();
+
+    #region IUserAuthenticator Implementation
+
     /// <inheritdoc/>
-    public async Task<User?> AuthenticateAsync(string userName, string password)
+    public Task<bool> IsAuthenticatedAsync(User user)
+    {
+        lock (_authenticatedUserListLock)
+            return Task.FromResult(_authenticatedUsers.Any(x => x.Id == user.Id));
+    }
+
+    /// <inheritdoc/>
+    public async Task<User?> LogInAsync(string userName, string password)
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(userName, nameof(userName));
         ArgumentNullException.ThrowIfNullOrWhiteSpace(password, nameof(password));
@@ -43,10 +56,28 @@ public class UserAuthenticator(
             userName: userEntity.UserName,
             password: securePasswordHashed,
             email: ref email,
+            isEmailConfirmed: userEntity.IsEmailConfirmed,
+            isEmail2FAEnabled: userEntity.IsEmail2FAEnabled,
             gsm: ref gsm,
+            isGsmConfirmed: userEntity.IsGSMConfirmed,
+            isGsm2FAEnabled: userEntity.IsGSM2FAEnabled,
             roles: userEntity.GetRolesAsDictionary());
         userEntity = null;
 
+        lock (_authenticatedUserListLock)
+            _authenticatedUsers.Add(authenticatedUser);
+
         return authenticatedUser;
     }
+
+    /// <inheritdoc/>
+    public Task<bool> LogOutAsync(User user)
+    {
+        bool isLoggedOut = false;
+        lock (_authenticatedUserListLock)
+            isLoggedOut = _authenticatedUsers.Remove(user);
+        return Task.FromResult(isLoggedOut);
+    }
+
+    #endregion
 }

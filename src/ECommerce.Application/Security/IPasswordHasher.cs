@@ -1,6 +1,6 @@
 ﻿using System.Security;
 
-namespace ECommerce.Application.Authentication;
+namespace ECommerce.Application.Security;
 
 /// <summary>
 /// Definition of the type that hashes the passwords.

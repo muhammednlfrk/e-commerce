@@ -31,9 +31,29 @@ public class UserEntity : EntityBase, IEntity
     public string? Email { get; set; }
 
     /// <summary>
+    /// Is user's email confirmed.
+    /// </summary>
+    public bool IsEmailConfirmed { get; set; }
+
+    /// <summary>
+    /// Is user's email 2FA authentication enabled.
+    /// </summary>
+    public bool IsEmail2FAEnabled { get; set; }
+
+    /// <summary>
     /// User's GSM number.
     /// </summary>
     public string? GSM { get; set; }
+
+    /// <summary>
+    /// Is user's GSM number confirmed.
+    /// </summary>
+    public bool IsGSMConfirmed { get; set; }
+
+    /// <summary>
+    /// Is user's GSM 2FA authentication enabled.
+    /// </summary>
+    public bool IsGSM2FAEnabled { get; set; }
 
     /// <summary>
     /// The role list of user.
