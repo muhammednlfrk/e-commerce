@@ -1,10 +1,17 @@
-﻿namespace ECommerce.Domain.Entities;
+﻿using ECommerce.Domain.Entities.Abstraction;
+
+namespace ECommerce.Domain.Entities;
 
 /// <summary>
 /// Defines a user role group.
 /// </summary>
-public class RoleGroupEntity : EntityBase, IEntity
+public class RoleGroupEntity : ISecurityEntity
 {
+    /// <summary>
+    /// The unique identifier of the role group.
+    /// </summary>
+    public int RoleGroupId { get; set; }
+
     /// <summary>
     /// Group's custom identity.
     /// </summary>

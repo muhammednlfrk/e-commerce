@@ -1,10 +1,17 @@
-﻿namespace ECommerce.Domain.Entities;
+﻿using ECommerce.Domain.Entities.Abstraction;
+
+namespace ECommerce.Domain.Entities;
 
 /// <summary>
 /// Defines a user role
 /// </summary>
-public class RoleEntity : EntityBase, IEntity
+public class RoleEntity : ISecurityEntity
 {
+    /// <summary>
+    /// The unique identifier of the role.
+    /// </summary>
+    public int RoleId { get; set; }
+
     /// <summary>
     /// Role's custom identificator.
     /// </summary>

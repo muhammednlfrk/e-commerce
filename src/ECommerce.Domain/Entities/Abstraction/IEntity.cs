@@ -1,4 +1,4 @@
-﻿namespace ECommerce.Domain.Entities;
+﻿namespace ECommerce.Domain.Entities.Abstraction;
 
 /// <summary>
 /// Defines an entity.
@@ -9,7 +9,7 @@ public interface IEntity
     /// Unique identifier of the <see cref="IEntity"/>.
     /// </summary>
     Guid Id { get; set; }
-    
+
     /// <summary>
     /// Creation time of the <see cref="IEntity"/>.
     /// </summary>

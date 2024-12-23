@@ -1,6 +1,6 @@
-﻿using ECommerce.Domain.Entities;
+﻿using ECommerce.Domain.Entities.Abstraction;
 
-namespace ECommerce.Domain.Repositories;
+namespace ECommerce.Application.Repositories;
 
 /// <summary>
 /// Defines funcitonalities for the CRUD operations of the <typeparamref name="TEntity"/>.
@@ -50,4 +50,21 @@ public interface IRepository<TEntity> where TEntity : class, IEntity
     /// <param name="id"><see cref="IEntity.Id"/> of the entity that gonna be deleted.</param>
     /// <returns>Returns <c>true</c> if entity successfully deleted else returns <c>false</c>.</returns>
     Task<bool> DeleteAsync(Guid id);
+}
+
+/// <summary>
+/// Defines a repository that gets data paged.
+/// </summary>
+/// <typeparam name="TEntity"></typeparam>
+public interface IPagedRepository<TEntity> where TEntity : class, IEntity
+{
+    /// <summary>
+    /// Gets data page by page without a condition.
+    /// </summary>
+    /// <param name="pageNumber">The page number.</param>
+    /// <param name="pageSize">Entity count on the page.</param>
+    /// <returns>
+    /// Returns <paramref name="pageSize"/> sized list of the <typeparamref name="TEntity"/>.
+    /// </returns>
+    Task<ICollection<TEntity>?> GetPagedAsync(uint pageNumber, uint pageSize);
 }

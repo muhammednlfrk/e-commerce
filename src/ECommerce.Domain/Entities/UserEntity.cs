@@ -1,9 +1,11 @@
-﻿namespace ECommerce.Domain.Entities;
+﻿using ECommerce.Domain.Entities.Abstraction;
+
+namespace ECommerce.Domain.Entities;
 
 /// <summary>
 /// Defines the user entity.
 /// </summary>
-public class UserEntity : EntityBase, IEntity
+public class UserEntity : EntityBase, IEntity, ISecurityEntity
 {
     /// <summary>
     /// Users's name. Not same with the <see cref="UserName"/>.

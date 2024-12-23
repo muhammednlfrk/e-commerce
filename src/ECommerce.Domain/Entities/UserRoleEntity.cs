@@ -1,10 +1,17 @@
-﻿namespace ECommerce.Domain.Entities;
+﻿using ECommerce.Domain.Entities.Abstraction;
+
+namespace ECommerce.Domain.Entities;
 
 /// <summary>
 /// Defines user's roles.
 /// </summary>
-public class UserRoleEntity : EntityBase, IEntity
+public class UserRoleEntity : ISecurityEntity
 {
+    /// <summary>
+    /// The unique identifier of the user role definition.
+    /// </summary>
+    public int UserRoleId { get; set; }
+
     /// <summary>
     /// The value that keeps user role identifiers.
     /// </summary>
@@ -23,12 +30,7 @@ public class UserRoleEntity : EntityBase, IEntity
     /// <summary>
     /// The role group unique identifier.
     /// </summary>
-    public ulong RoleGroupValue { get; set; }
-
-    /// <summary>
-    /// The id of the <see cref="RoleGroup"/>.
-    /// </summary>
-    public Guid RoleGroupId { get; set; }
+    public int RoleGroupId { get; set; }
 
     /// <summary>
     /// The role group.

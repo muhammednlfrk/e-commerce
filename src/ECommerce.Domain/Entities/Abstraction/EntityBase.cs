@@ -1,4 +1,4 @@
-﻿namespace ECommerce.Domain.Entities;
+﻿namespace ECommerce.Domain.Entities.Abstraction;
 
 /// <summary>
 /// Base definition of <see cref="IEntity"/>.
