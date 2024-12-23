@@ -1,8 +1,8 @@
-﻿using ECommerce.Application.Repositories;
-using ECommerce.Application.Security;
+﻿using ECommerce.Application.Security;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Exceptions;
 using ECommerce.Domain.Helpers;
+using ECommerce.Domain.Repositories;
 using System.Security;
 
 namespace ECommerce.Application.Authentication;

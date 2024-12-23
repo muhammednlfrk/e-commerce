@@ -1,6 +1,6 @@
 ﻿using ECommerce.Domain.Entities.Abstraction;
 
-namespace ECommerce.Application.Repositories;
+namespace ECommerce.Domain.Repositories;
 
 /// <summary>
 /// Defines funcitonalities for the CRUD operations of the <typeparamref name="TEntity"/>.

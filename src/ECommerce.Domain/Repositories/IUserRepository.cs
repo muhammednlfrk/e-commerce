@@ -1,6 +1,6 @@
 ﻿using ECommerce.Domain.Entities;
 
-namespace ECommerce.Application.Repositories;
+namespace ECommerce.Domain.Repositories;
 
 /// <summary>
 /// Definition of a repository for <see cref="UserEntity"/> entities.
