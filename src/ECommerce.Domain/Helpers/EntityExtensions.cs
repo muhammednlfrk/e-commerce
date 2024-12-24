@@ -11,13 +11,13 @@ public static class EntityExtensions
     /// <returns>
     /// </returns>
     /// <exception cref="ArgumentNullException"/>
-    public static IReadOnlyDictionary<ulong, ulong> GetRolesAsDictionary(this UserEntity userEntity)
+    public static IReadOnlyDictionary<int, ulong> GetRolesAsDictionary(this UserEntity userEntity)
     {
         if (userEntity.Roles == null)
             ArgumentNullException.ThrowIfNull(userEntity.Roles, nameof(userEntity.Roles));
-        Dictionary<ulong, ulong> roles = new(userEntity.Roles.Count);
+        Dictionary<int, ulong> roles = new(userEntity.Roles.Count);
         foreach (UserRoleEntity role in userEntity.Roles)
-            roles.Add(role.RoleGroupValue, role.UserRoles);
+            roles.Add(role.RoleGroupId, role.UserRoles);
         return roles.AsReadOnly();
     }
 }

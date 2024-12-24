@@ -47,7 +47,7 @@ public sealed class User : IDisposable
         ref string gsm,
         bool isGsmConfirmed,
         bool isGsm2FAEnabled,
-        IReadOnlyDictionary<ulong, ulong> roles)
+        IReadOnlyDictionary<int, ulong> roles)
     {
         Id = id;
         FirstName = firstName;
@@ -126,7 +126,7 @@ public sealed class User : IDisposable
     /// <i>key:</i> Role group id.<br/>
     /// <i>value:</i> Role value by group.<br/>
     /// </summary>
-    public IReadOnlyDictionary<ulong, ulong> Roles { get; }
+    public IReadOnlyDictionary<int, ulong> Roles { get; }
 
     #endregion
 

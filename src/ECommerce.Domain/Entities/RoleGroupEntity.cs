@@ -25,5 +25,10 @@ public class RoleGroupEntity : ISecurityEntity
     /// <summary>
     /// The role definition list of the group.
     /// </summary>
-    public List<RoleEntity>? Roles { get; set; }
+    public ICollection<RoleEntity>? Roles { get; set; }
+
+    /// <summary>
+    /// The user role definition list of the group.
+    /// </summary>
+    public ICollection<UserRoleEntity>? UserRoles { get; set; }
 }
